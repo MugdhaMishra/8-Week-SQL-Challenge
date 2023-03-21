@@ -204,5 +204,5 @@ GROUP BY FORMAT(DATEADD(DAY, 2, order_time),'dddd');
 - There are 3 pizzas ordered on Saturday.
 - There is 1 pizza ordered on Sunday.
 
-***Click [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/B.%20Runner%20and%20Customer%20Experience.md) for solution for B. Runner and Customer Experience!***
+***Click [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/B.%20Runner%20and%20Customer%20Experience.md) for solution for B. Runner and Customer Experience!***
 
