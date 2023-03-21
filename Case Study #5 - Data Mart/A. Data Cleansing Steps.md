@@ -74,4 +74,4 @@ FROM data_mart.weekly_sales);
 
 ***
 
-Click [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/blob/main/Case%20Study%20%235%20-%20Data%20Mart/B.%20Data%20Exploration.md) for **B. Data Exploration** solution!
+Click [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/blob/main/Case%20Study%20%235%20-%20Data%20Mart/B.%20Data%20Exploration.md) for **B. Data Exploration** solution!
