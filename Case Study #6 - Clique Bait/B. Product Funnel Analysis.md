@@ -187,3 +187,5 @@ FROM product_info
 - Although the cart add rate is lower, but the conversion of potential customer to the sales funnel is at least 15% higher.
 
 ***
+
+Click [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/blob/main/Case%20Study%20%236%20-%20Clique%20Bait/B.%20Product%20Funnel%20Analysis.md) for solutions to **C. Customer Analysis**!
