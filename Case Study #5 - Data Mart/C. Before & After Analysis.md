@@ -181,4 +181,4 @@ There was a fair bit of percentage differences in all 3 years. However, now when
 
 ***
 
-Click [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/blob/main/Case%20Study%20%235%20-%20Data%20Mart/D.%20Bonus%20Question.md) for **D. Bonus Question** solution! 🙌🏻
+Click [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/blob/main/Case%20Study%20%235%20-%20Data%20Mart/D.%20Bonus%20Question.md) for **D. Bonus Question** solution! 🙌🏻
