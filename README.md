@@ -151,7 +151,7 @@ Clique Bait is an online seafood store. In this case study - you are required to
 
 <img src="https://user-images.githubusercontent.com/81607668/138843936-d1741a39-9b87-4d5d-b09c-643600e28c92.png" alt="Image" width="500" height="520">
 
-View the case study [here](https://8weeksqlchallenge.com/case-study-8/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%238 %20Fresh%20Segments). .
+View the case study [here](https://8weeksqlchallenge.com/case-study-8/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%238%20Fresh%20Segments).
 
 ### Business Task
 
