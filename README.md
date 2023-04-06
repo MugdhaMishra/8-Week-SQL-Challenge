@@ -1,172 +1,143 @@
-# 🍔 8 Week SQL Challenge
+# Case Study #7 - Balanced Tree Clothing Co. :mountain_snow:
+
+<img src="https://user-images.githubusercontent.com/98699089/158577720-0de460fb-d90e-4aa2-a563-33136741f5bc.png" width="600">
+
+Danny, the CEO of this trendy fashion company has asked you to assist the team’s merchandising teams analyse their sales performance and generate a basic financial report to share with the wider business.
+
+## Available Data
+
+For this case study there is a total of 4 datasets for this case study - however you will only need to utilise 2 main tables to solve all of the regular questions, and the additional 2 tables are used only for the bonus challenge question!
+
+### Product Details
+
+`balanced_tree.product_details` includes all information about the entire range that Balanced Clothing sells in their store.
+
+| product_id | price | product_name                     | category_id | segment_id | style_id | category_name | segment_name | style_name          |
+|------------|-------|----------------------------------|-------------|------------|----------|---------------|--------------|---------------------|
+| c4a632     | 13    | Navy Oversized Jeans - Womens    | 1           | 3          | 7        | Womens        | Jeans        | Navy Oversized      |
+| e83aa3     | 32    | Black Straight Jeans - Womens    | 1           | 3          | 8        | Womens        | Jeans        | Black Straight      |
+| e31d39     | 10    | Cream Relaxed Jeans - Womens     | 1           | 3          | 9        | Womens        | Jeans        | Cream Relaxed       |
+| d5e9a6     | 23    | Khaki Suit Jacket - Womens       | 1           | 4          | 10       | Womens        | Jacket       | Khaki Suit          |
+| 72f5d4     | 19    | Indigo Rain Jacket - Womens      | 1           | 4          | 11       | Womens        | Jacket       | Indigo Rain         |
+| 9ec847     | 54    | Grey Fashion Jacket - Womens     | 1           | 4          | 12       | Womens        | Jacket       | Grey Fashion        |
+| 5d267b     | 40    | White Tee Shirt - Mens           | 2           | 5          | 13       | Mens          | Shirt        | White Tee           |
+| c8d436     | 10    | Teal Button Up Shirt - Mens      | 2           | 5          | 14       | Mens          | Shirt        | Teal Button Up      |
+| 2a2353     | 57    | Blue Polo Shirt - Mens           | 2           | 5          | 15       | Mens          | Shirt        | Blue Polo           |
+| f084eb     | 36    | Navy Solid Socks - Mens          | 2           | 6          | 16       | Mens          | Socks        | Navy Solid          |
+| b9a74d     | 17    | White Striped Socks - Mens       | 2           | 6          | 17       | Mens          | Socks        | White Striped       |
+| 2feb6b     | 29    | Pink Fluro Polkadot Socks - Mens | 2           | 6          | 18       | Mens          | Socks        | Pink Fluro Polkadot |
 
-This repository contains the solution for the 8 case studies in **[#8WeekSQLChallenge](https://8weeksqlchallenge.com)**!
+### Product Sales
 
-Thanks @DataWithDanny for the excellent SQL case studies! 👋🏻 
+`balanced_tree.sales` contains product level information for all the transactions made for Balanced Tree including quantity, price, percentage discount, member status, a transaction ID and also the transaction timestamp.
 
-## 📚 Table of Contents
-- [Case Study #1: Danny's Diner](#case-study-1-dannys-diner)
-- [Case Study #2: Pizza Runner](#case-study-2-pizza-runner)
-- [Case Study #3: Foodie-Fi](#case-study-3-foodie-fi)
-- [Case Study #4: Data Bank](#case-study-4-data-bank)
-- [Case Study #5: Data Mart](#case-study-5-data-mart)
-- [Case Study #6: Clique Bait](#case-study-6-clique-bait)
-- [Case Study #8: Fresh Segments](#case-study-8-fresh-segments)
+| prod_id | qty | price | discount | member | txn_id | start_txn_time           |
+|---------|-----|-------|----------|--------|--------|--------------------------|
+| c4a632  | 4   | 13    | 17       | t      | 54f307 | 2021-02-13 01:59:43.296  |
+| 5d267b  | 4   | 40    | 17       | t      | 54f307 | 2021-02-13 01:59:43.296  |
+| b9a74d  | 4   | 17    | 17       | t      | 54f307 | 2021-02-13 01:59:43.296  |
+| 2feb6b  | 2   | 29    | 17       | t      | 54f307 | 2021-02-13 01:59:43.296  |
+| c4a632  | 5   | 13    | 21       | t      | 26cc98 | 2021-01-19 01:39:00.3456 |
+| e31d39  | 2   | 10    | 21       | t      | 26cc98 | 2021-01-19 01:39:00.3456 |
+| 72f5d4  | 3   | 19    | 21       | t      | 26cc98 | 2021-01-19 01:39:00.3456 |
+| 2a2353  | 3   | 57    | 21       | t      | 26cc98 | 2021-01-19 01:39:00.3456 |
+| f084eb  | 3   | 36    | 21       | t      | 26cc98 | 2021-01-19 01:39:00.3456 |
+| c4a632  | 1   | 13    | 21       | f      | ef648d | 2021-01-27 02:18:17.1648 |
 
-***
+### Product Hierarcy & Product Price
 
-## Case Study #1: Danny's Diner 
-<img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" alt="Image" width="500" height="520">
+These tables are used only for the bonus question where we will use them to recreate the `balanced_tree.product_details` table.
 
-View the case study [here](https://8weeksqlchallenge.com/case-study-1/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%231%20-%20Danny's%20Diner).
+`balanced_tree.product_hierarchy`
 
-### Business Task
-Danny wants to use the data to answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite. 
+| id | parent_id | level_text          | level_name |
+|----|-----------|---------------------|------------|
+| 1  | Womens    | Category            |            |
+| 2  | Mens      | Category            |            |
+| 3  | 1         | Jeans               | Segment    |
+| 4  | 1         | Jacket              | Segment    |
+| 5  | 2         | Shirt               | Segment    |
+| 6  | 2         | Socks               | Segment    |
+| 7  | 3         | Navy Oversized      | Style      |
+| 8  | 3         | Black Straight      | Style      |
+| 9  | 3         | Cream Relaxed       | Style      |
+| 10 | 4         | Khaki Suit          | Style      |
+| 11 | 4         | Indigo Rain         | Style      |
+| 12 | 4         | Grey Fashion        | Style      |
+| 13 | 5         | White Tee           | Style      |
+| 14 | 5         | Teal Button Up      | Style      |
+| 15 | 5         | Blue Polo           | Style      |
+| 16 | 6         | Navy Solid          | Style      |
+| 17 | 6         | White Striped       | Style      |
+| 18 | 6         | Pink Fluro Polkadot | Style      |
 
-### Entity Relationship Diagram
+`balanced_tree.product_prices`
 
-![image](https://user-images.githubusercontent.com/81607668/127271130-dca9aedd-4ca9-4ed8-b6ec-1e1920dca4a8.png)
+| id | product_id | price |
+|----|------------|-------|
+| 7  | c4a632     | 13    |
+| 8  | e83aa3     | 32    |
+| 9  | e31d39     | 10    |
+| 10 | d5e9a6     | 23    |
+| 11 | 72f5d4     | 19    |
+| 12 | 9ec847     | 54    |
+| 13 | 5d267b     | 40    |
+| 14 | c8d436     | 10    |
+| 15 | 2a2353     | 57    |
+| 16 | f084eb     | 36    |
+| 17 | b9a74d     | 17    |
+| 18 | 2feb6b     | 29    |
 
-### Insights and Findings
+## Table of Contents
 
-***
+[Introduction](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#introduction)
 
-## Case Study #2: Pizza Runner
+[Case Study Questions](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#case-study-questions)
 
-<img src="https://user-images.githubusercontent.com/81607668/127271856-3c0d5b4a-baab-472c-9e24-3c1e3c3359b2.png" alt="Image" width="500" height="520">
+[High Level Sales Analysis](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#high-level-sales-analysis)
 
-View the case study [here](https://8weeksqlchallenge.com/case-study-2/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%232%20-%20Pizza%20Runner).
+[1. What was the total quantity sold for all products?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#1-what-was-the-total-quantity-sold-for-all-products)
 
-### Business Task
-Danny is expanding his new Pizza Empire and at the same time, he wants to Uberize it, so Pizza Runner was launched!
+[2. What is the total generated revenue for all products before discounts?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#2-what-is-the-total-generated-revenue-for-all-products-before-discounts)
 
-Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runner Headquarters (otherwise known as Danny’s house) and also maxed out his credit card to pay freelance developers to build a mobile app to accept orders from customers. 
+[3. What was the total discount amount for all products?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#3-what-was-the-total-discount-amount-for-all-products)
 
-### Entity Relationship Diagram
+[Transaction Analysis](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#transaction-analysis)
 
-![image](https://user-images.githubusercontent.com/81607668/127271531-0b4da8c7-8b24-4a14-9093-0795c4fa037e.png)
+[1. How many unique transactions were there?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#1-how-many-unique-transactions-were-there)
 
-### Insights and Findings
-  
-***
+[2. What is the average unique products purchased in each transaction?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#2-what-is-the-average-unique-products-purchased-in-each-transaction)
 
-## Case Study #3: Foodie-Fi
+[3. What are the 25th, 50th and 75th percentile values for the revenue per transaction?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#3-what-are-the-25th-50th-and-75th-percentile-values-for-the-revenue-per-transaction)
 
-<img src="https://user-images.githubusercontent.com/81607668/129742132-8e13c136-adf2-49c4-9866-dec6be0d30f0.png" width="500" height="520" alt="image">
+[4. What is the average discount value per transaction?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#4-what-is-the-average-discount-value-per-transaction)
 
-View the case study [here](https://8weeksqlchallenge.com/case-study-3/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%233%20-%20Foodie-Fi).
+[5. What is the percentage split of all transactions for members vs non-members?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#5-what-is-the-percentage-split-of-all-transactions-for-members-vs-non-members)
 
-### Business Task
-Danny and his friends launched a new startup Foodie-Fi and started selling monthly and annual subscriptions, giving their customers unlimited on-demand access to exclusive food videos from around the world.
+[6. What is the average revenue for member transactions and non-member transactions?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#6-what-is-the-average-revenue-for-member-transactions-and-non-member-transactions)
 
-This case study focuses on using subscription style digital data to answer important business questions on customer journey, payments, and business performances.
+[Product Analysis](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#product-analysis)
 
-### Entity Relationship Diagram
+[1. What are the top 3 products by total revenue before discount?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#1-what-are-the-top-3-products-by-total-revenue-before-discount)
 
-![image](https://user-images.githubusercontent.com/81607668/129744449-37b3229b-80b2-4cce-b8e0-707d7f48dcec.png)
+[2. What is the total quantity, revenue and discount for each segment?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#2-what-is-the-total-quantity-revenue-and-discount-for-each-segment)
 
-### Insights and Findings
+[3. What is the top selling product for each segment?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#3-what-is-the-top-selling-product-for-each-segment)
 
-***
+[4. What is the total quantity, revenue and discount for each category?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#4-what-is-the-total-quantity-revenue-and-discount-for-each-category)
 
-## Case Study #4: Data Bank
+[5. What is the top selling product for each category?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#5-what-is-the-top-selling-product-for-each-category)
 
-<img src="https://user-images.githubusercontent.com/81607668/130343294-a8dcceb7-b6c3-4006-8ad2-fab2f6905258.png" alt="Image" width="500" height="520">
+[6. What is the percentage split of revenue by product for each segment?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#6-what-is-the-percentage-split-of-revenue-by-product-for-each-segment)
 
-View the case study [here](https://8weeksqlchallenge.com/case-study-4/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%234%20-%20Data%20Bank).
+[7. What is the percentage split of revenue by segment for each category?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#7-what-is-the-percentage-split-of-revenue-by-segment-for-each-category)
 
-### Business Task
-Danny launched a new initiative, Data Bank which runs just like any other digital bank - but it isn’t only for banking activities, they also have the world’s most secure distributed data storage platform!
+[8. What is the percentage split of total revenue by category?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#8-what-is-the-percentage-split-of-total-revenue-by-category)
 
-Customers are allocated cloud data storage limits which are directly linked to how much money they have in their accounts. There are a few interesting caveats that go with this business model, and this is where the Data Bank team need your help!
+[9. What is the total transaction “penetration” for each product? (hint: penetration = number of transactions where at least 1 quantity of a product was purchased divided by total number of transactions)](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#9-what-is-the-total-transaction-penetration-for-each-product-hint-penetration--number-of-transactions-where-at-least-1-quantity-of-a-product-was-purchased-divided-by-total-number-of-transactions)
 
-The management team at Data Bank want to increase their total customer base - but also need some help tracking just how much data storage their customers will need.
+[10. What is the most common combination of at least 1 quantity of any 3 products in a 1 single transaction?](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#10-what-is-the-most-common-combination-of-at-least-1-quantity-of-any-3-products-in-a-1-single-transaction)
 
-This case study is all about calculating metrics, growth and helping the business analyse their data in a smart way to better forecast and plan for their future developments!
+[Reporting Challenge](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#reporting-challenge)
 
-### Entity Relationship Diagram
-
-<img width="631" alt="image" src="https://user-images.githubusercontent.com/81607668/130343339-8c9ff915-c88c-4942-9175-9999da78542c.png">
-
-### Insights and Findings
-
-***
-
-## Case Study #5: Data Mart
-
-<img src="https://user-images.githubusercontent.com/81607668/131437982-fc087a4c-0b77-4714-907b-54e0420e7166.png" alt="Image" width="500" height="520">
-
-View the case study [here](https://8weeksqlchallenge.com/case-study-5/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%235%20-%20Data%20Mart).
-
-### Business Task
-Data Mart is an online supermarket that specialises in fresh produce.
-
-In June 2020, large scale supply changes were made at Data Mart. All Data Mart products now use sustainable packaging methods in every single step from the farm all the way to the customer.
-
-Danny needs your help to analyse and quantify the impact of this change on the sales performance for Data Mart and it’s separate business areas.
-
-The key business question to answer are the following:
-- What was the quantifiable impact of the changes introduced in June 2020?
-- Which platform, region, segment and customer types were the most impacted by this change?
-- What can we do about future introduction of similar sustainability updates to the business to minimise impact on sales?
-
-### Entity Relationship Diagram
-
-<img width="287" alt="image" src="https://user-images.githubusercontent.com/81607668/131438278-45e6a4e8-7cf5-468a-937b-2c306a792782.png">
-
-<img width="649" alt="image" src="https://user-images.githubusercontent.com/81607668/131438417-1e21efa3-9924-490f-9bff-3c28cce41a37.png">
-
-Here are some further details about the dataset:
-
-1. Data Mart has international operations using a multi-`region` strategy.
-2. Data Mart has both, a retail and online `platform` in the form of a Shopify store front to serve their customers.
-3. Customer `segment` and `customer_type` data relates to personal age and demographics information that is shared with Data Mart.
-4. `transactions` is the count of unique purchases made through Data Mart and `sales` is the actual dollar amount of purchases.
-
-Each record in the dataset is related to a specific aggregated slice of the underlying sales data rolled up into a week_date value which represents the start of the sales week.
-
-### Insights and Findings
-
-***
-
-## Case Study #6: Clique Bait
-
-<img src="https://user-images.githubusercontent.com/81607668/134615258-d1108e0d-0816-4cd7-a972-d45580f82352.png" alt="Image" width="500" height="520">
-
-View the case study [here](https://8weeksqlchallenge.com/case-study-6/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%236%20-%20Clique%20Bait).
-
-### Business Task
-
-Clique Bait is an online seafood store. In this case study - you are required to support the founder and CEO Danny’s vision and analyse his dataset and come up with creative solutions to calculate funnel fallout rates for the Clique Bait online store.
-
-### Entity Relationship Diagram
-
-<img width="825" alt="image" src="https://user-images.githubusercontent.com/81607668/134619326-f560a7b0-23b2-42ba-964b-95b3c8d55c76.png">
-
-### Insights and Findings
-
-***
-
-## Case Study #8: Fresh Segments
-
-<img src="https://user-images.githubusercontent.com/81607668/138843936-d1741a39-9b87-4d5d-b09c-643600e28c92.png" alt="Image" width="500" height="520">
-
-View the case study [here](https://8weeksqlchallenge.com/case-study-8/) and my **solution** [here](https://github.com/MugdhaMishra/8-Week-SQL-Challenge/tree/main/Case%20Study%20%238%20Fresh%20Segments).
-
-### Business Task
-
-Fresh Segments is a digital marketing agency that helps other businesses analyse trends in online ad click behaviour for their unique customer base.
-
-Clients share their customer lists with the Fresh Segments team who then aggregate interest metrics and generate a single dataset worth of metrics for further analysis.
-
-In particular - the composition and rankings for different interests are provided for each client showing the proportion of their customer list who interacted with online assets related to each interest for each month.
-
-Danny has asked for your assistance to analyse aggregated metrics for an example client and provide some high level insights about the customer list and their interests.
-
-### Entity Relationship Diagram
-
-
-
-### Insights and Findings
-
-***
+[Bonus Challenge](https://github.com/muryulia/8-Week-SQL-Challenge/blob/main/Case%20Study%20%237%20-%20Balanced%20Tree%20Clothing%20Co./Solution.md#bonus-challenge)
